@@ -18,7 +18,7 @@ import com.verizon.brs.services.OrderService;
 
 
 @RestController
-//@CrossOrigin
+@CrossOrigin
 @RequestMapping("/orders")
 public class OrderApi {
 
