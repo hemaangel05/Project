@@ -1,0 +1,53 @@
+
+  <header>
+    <h1>   
+      <h1><span style="color:#015E87">Blue</span><span style = "color: #ADACA8">Ray</span></h1>
+    </h1>   
+  </header>
+  <nav>
+      <li>Home</li>
+      <li>About Us</li>
+      <li>Our services</li>
+      <li>Shipping</li>
+      <li>Tracking</li>
+      <li>Contact Us</li>
+  </nav>
+
+ <nav class="sidemenu">
+  <a routerLink='/'>International Courier Services</a>
+  <a routerLink='/dc'>Domestic Courier Services</a>
+  <a routerLink='/sf'>Sea Freight</a>
+  <a routerLink='/lo'>Logistics</a>
+  <a routerLink='/af'>Air Freight</a>
+ </nav>
+<button type= "button">PLACE ORDER</button>
+
+    <div class="myclass" *ngFor="let info of infor" style="display: inline;" >
+      <h1>Information Desk</h1>
+      <label>Email:</label>
+     <p> {{info.email}} </p>
+     <label>Phone:</label>
+     <p> {{info.phone}} </p>
+     <label>Address:</label>
+     <p> {{info.address}} </p>     
+    </div>
+
+    <div class="myclass1">
+        <img [src] = "pic1"  width="280px" height="200px" />
+        <img [src] = "pic2"  width="280px" height="200px"/>
+    </div>
+  
+
+
+
+
+
+ <main>
+
+  <router-outlet>
+
+  </router-outlet>
+  
+ </main>
+
+  
