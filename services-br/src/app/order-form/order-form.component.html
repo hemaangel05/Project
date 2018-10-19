@@ -1,0 +1,209 @@
+
+<h4>Please fill up the form  to place your order!</h4>
+
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-sm-9 m-auto">
+      <form class="form" #f="ngForm" novalidate (ngSubmit)="save()">
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="user"></fa>
+              </span>
+            </div>
+            <input type="number" class="form-control" id="qty" name="qty" required min="1" [(ngModel)]="order.qty" #qty=ngModel
+              placeholder="Quantity" />
+          </div>
+          <div class="alert alert-danger" *ngIf="(qty.errors && (qty.touched || qty.darty))">
+            <p *ngIf="(qty.errors && (qty.touched || qty.darty))">Please see that Quantity is entered
+              <strong>
+                <span *ngIf="qty.errors.required">is not left blank</span>
+                <span *ngIf="qty.errors.min">and at least one</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="user"></fa>
+              </span>
+            </div>
+            <input type="number" class="form-control" id="weight" name="weight" required min="1" [(ngModel)]="order.weight" #weight=ngModel
+              placeholder="Weight (in Kg)" />
+          </div>
+          <div class="alert alert-danger" *ngIf="(weight.errors && (weight.touched || weight.darty))">
+            <p *ngIf="(weight.errors && (weight.touched || weight.darty))">Please see that Weight is entered
+              <strong>
+                <span *ngIf="weight.errors.required">is not left blank</span>
+                <span *ngIf="weight.errors.min">and at least one</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="user"></fa>
+              </span>
+            </div>
+            <div class="form-check-inline" style="margin-left:10px;">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="deliverytype" value="NORMAL" required [(ngModel)]="order.deliverytype"
+                  #deliverytype=ngModel />Normal
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="deliverytype" value="FAST" required [(ngModel)]="order.deliverytype"
+                  #deliverytype=ngModel />Fast
+              </label>
+            </div>
+          </div>
+          <div class="alert alert-danger" *ngIf="deliverytype.invalid">
+            <p>Please see that Delivery Type
+              <strong>is selected</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="fighter-jet"></fa>
+              </span>
+            </div>
+            <div class="form-check-inline" style="margin-left:10px;">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="deliveryarea" value="INTERNATIONAL" required
+                  [(ngModel)]="order.deliveryarea" #deliveryarea=ngModel />International
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="deliveryarea" value="DOMESTIC" required [(ngModel)]="order.deliveryarea"
+                  #deliveryarea=ngModel />Domestic
+              </label>
+            </div>
+          </div>
+          <div class="alert alert-danger" *ngIf="deliveryarea.invalid">
+            <p>Please see that Delivery Service
+              <strong>is selected</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="calendar"></fa>
+              </span>
+            </div>
+            <input type="date" class="form-control" id="dod" name="dod" required [(ngModel)]="order.dod" #dod=ngModel />
+          </div>
+          <div class="alert alert-danger" *ngIf="(dod.errors && (dod.touched || dod.darty))">
+            <p *ngIf="(dod.errors && (dod.touched || dod.darty))">Please see that Date of Delivery
+              <strong>
+                <span *ngIf="dod.errors.required">is not selected</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="address-card"></fa>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="locality" name="locality" required [(ngModel)]="order.locality"
+              #locality=ngModel placeholder="Locality" />
+          </div>
+          <div class="alert alert-danger" *ngIf="(locality.errors && (locality.touched || locality.darty))">
+            <p *ngIf="(locality.errors && (locality.touched || locality.darty))">Please see that Locality
+              <strong>
+                <span *ngIf="locality.errors.required">is not left blank</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="address-card"></fa>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="city" name="city" required [(ngModel)]="order.city" #city=ngModel
+              placeholder="City" />
+          </div>
+          <div class="alert alert-danger" *ngIf="city.errors && (city.touched || city.darty)">
+            <p>Please see that City
+              <strong>
+                <span *ngIf="city.errors.required">is not left blank</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="address-card"></fa>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="state" name="state" required [(ngModel)]="order.state" #state=ngModel
+              placeholder="State" />
+          </div>
+          <div class="alert alert-danger" *ngIf="state.errors && (city.touched || state.darty)">
+            <p>Please see that State
+              <strong>
+                <span *ngIf="state.errors.required">is not left blank</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="address-card"></fa>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="country" name="country" required [(ngModel)]="order.country"
+              #country=ngModel placeholder="Country" />
+          </div>
+          <div class="alert alert-danger" *ngIf="country.errors && (country.touched || country.darty)">
+            <p>Please see that Country
+              <strong>
+                <span *ngIf="country.errors.required">is not left blank</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="calendar"></fa>
+              </span>
+            </div>
+            <div class="form-control">{{doo}}</div>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-block btn-primary">Save</button>
+        </div>
+      </form>
