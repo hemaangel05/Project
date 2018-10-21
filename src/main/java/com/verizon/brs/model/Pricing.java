@@ -3,15 +3,10 @@ package com.verizon.brs.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name="pricing")
@@ -22,8 +17,8 @@ public class Pricing {
 	//@GenericGenerator(name="mygen",strategy="foreign",
 	//parameters= {@Parameter(name="property",value="order")})
 	private long oid;
-	@Enumerated(EnumType.STRING )
-	private Freight freight;
+	//@Enumerated(EnumType.STRING )
+	//private Freight freight;
 	@Enumerated(EnumType.STRING )
 	private Area deliveryarea;
 	@Enumerated(EnumType.STRING )
@@ -42,11 +37,11 @@ public class Pricing {
 	}
 	
 	
-	public Pricing(long oid, Freight freight, Type deliverytype, Area deliveryarea, double price, boolean isCancel,
+	public Pricing(long oid, Type deliverytype, Area deliveryarea, double price, boolean isCancel,
 			double cancelcharges) {
 		super();
 		this.oid = oid;
-		this.freight = freight;
+		//this.freight = freight;
 		this.deliveryarea = deliveryarea;
 		this.deliverytype = deliverytype;
 		this.price = price;
@@ -63,13 +58,13 @@ public class Pricing {
 		this.oid = oid;
 	}
 
-	public Freight getFreight() {
+	/*public Freight getFreight() {
 		return freight;
 	}
 
 	public void setFreight(Freight freight) {
 		this.freight = freight;
-	}
+	}*/
 
 	public Area getDeliveryarea() {
 		return deliveryarea;
@@ -125,7 +120,7 @@ public class Pricing {
 
 	@Override
 	public String toString() {
-		return "Pricing [oid=" + oid + ", freight=" + freight + ", deliveryarea=" + deliveryarea + ", deliverytype="
+		return "Pricing [oid=" + oid + ", deliveryarea=" + deliveryarea + ", deliverytype="
 				+ deliverytype + ", price=" + price + ", isCancel=" + isCancel + ", cancelcharges=" + cancelcharges
 				+ "]";
 	}

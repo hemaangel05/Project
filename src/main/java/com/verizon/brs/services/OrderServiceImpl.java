@@ -3,6 +3,8 @@ package com.verizon.brs.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.verizon.brs.dao.OrderRepo;
 import com.verizon.brs.model.Order;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
@@ -24,9 +27,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void removeOrder(long oid) {
 		if (orderRepo.existsByOid(oid)) {
+			System.out.println("Order Before Delete ----> "+orderRepo.findByOid(oid));
 			orderRepo.deleteByOid(oid);
+			System.out.println("Order After Delete ----> "+orderRepo.findByOid(oid));
 		}
-
 	}
 
 	@Override

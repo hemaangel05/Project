@@ -3,23 +3,21 @@ package com.verizon.brs.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.verizon.brs.dao.PricingRepo;
-import com.verizon.brs.model.Area;
 import com.verizon.brs.model.Freight;
 import com.verizon.brs.model.Order;
 import com.verizon.brs.model.Pricing;
-import com.verizon.brs.model.Type;
 
 @Service
+@Transactional
 public class PricingServiceImpl implements PricingService {
 	
 	private Pricing pricing = new Pricing();
-	double price = 50.0;
-	double cancelcharges = 0.0;
-	boolean isCancel = false;
 
 	@Autowired
 	public PricingRepo priceRepo;
@@ -42,83 +40,62 @@ public class PricingServiceImpl implements PricingService {
 
 	@Override
 	//public double calculatePrice(Type deliverytype, Area deliveryarea, double weight, int qty, boolean isCancel) {
-	public double calculatePrice(Order order) {
+	public double calculatePrice(Order order, Freight freight) {
 	//Freight freight;
+		double price = 50.0;
 		System.out.println("#1 ----> "+price);
 
-		if (order.getWeight() > 1) {
+		if (order.getWeight() > 1 && order.getWeight()<1000) {
 			price = price *= order.getWeight() / 2;
-			System.out.println("#2 ----> "+price);
+			System.out.println("#2 < ----> "+price);
+		} else {
+			price = 25000.0;
+			System.out.println("#2 > ----> "+price);
 		}
-
 		if (order.getQty() > 1) {
 			price = price *= order.getQty() / 2;
 			System.out.println("#3 ----> "+price);
 		}
-		
-		if (order.getDeliveryarea().equals(Area.INTERNATIONAL) && order.getDeliverytype().equals(Type.FAST)) {
-			price = price * 3; 
-			pricing.setFreight(Freight.AIR);
-			//freight=Freight.AIR;
+		if(freight.equals(Freight.AIR)) {
+			price = price * 2;
 			System.out.println("#4 ----> "+price);
-			System.out.println("Freight : "+pricing.getFreight());
 		}
-		else if (order.getDeliveryarea().equals(Area.DOMESTIC) && order.getDeliverytype().equals(Type.FAST)) {
-			price = price * 2;
-			pricing.setFreight(Freight.AIR);
-			//freight=Freight.AIR;
+		else if(freight.equals(Freight.SEA)) {
+			price = price * 1.5;
 			System.out.println("#5 ----> "+price);
-			System.out.println("Freight : "+pricing.getFreight());
 		}
-		else if (order.getDeliveryarea().equals(Area.DOMESTIC) && order.getDeliverytype().equals(Type.NORMAL)) {
-			price = price * 2;
-			if (order.getWeight() > 1000)
-				pricing.setFreight(Freight.AIR);
-			else
-				pricing.setFreight(Freight.ROAD);
-			//freight=Freight.AIR;
-			System.out.println("#5 ----> "+price);
-			System.out.println("Freight : "+pricing.getFreight());
-		}
-		else if (order.getDeliveryarea().equals(Area.INTERNATIONAL) && order.getDeliverytype().equals(Type.NORMAL)) {
-			price = price * 2;
-			pricing.setFreight(Freight.SEA);
-			//freight = Freight.AIR;
+		else
 			System.out.println("#6 ----> "+price);
-			System.out.println("Freight : "+pricing.getFreight());
-		}
-		else {
-			pricing.setFreight(Freight.ROAD);
-			//freight=Freight.ROAD;
-		}
 		
-		if(isCancel) {
-			price = price*0.1;
-			cancelcharges = price;
-		}
-		System.out.println("#7 ----> "+price);
-		/*pricing.setOid(oid);
-		pricing.setDeliverytype(deliverytype);
-		pricing.setDeliveryarea(deliveryarea);
-		pricing.setPrice(price);
-		pricing.setCancel(isCancel);
-		pricing.setCancelcharges(0);
-		System.out.println("#7 ----> "+price);
-		Pricing pricing = new Pricing(oid,freight,deliverytype,deliveryarea,price,isCancel,cancelcharges);
-		priceRepo.save(pricing);
-		System.out.println("Pricing : "+pricing.toString());*/
+		
 		return price;
 	}
 
 	@Override
 	public void addPricing(Order order) {
+		boolean isCancel = false;
+		double price = order.getPrice();
+		double cancelcharges = 0.0;
 		pricing.setOid(order.getOid());
 		pricing.setDeliverytype(order.getDeliverytype());
 		pricing.setDeliveryarea(order.getDeliveryarea());
+		if(isCancel) {
+			price = price*0.1;
+			cancelcharges = price;
+		}
 		pricing.setPrice(price);
+		System.out.println("#7 ----> "+price);
 		pricing.setCancel(isCancel);
 		pricing.setCancelcharges(cancelcharges);
 		priceRepo.save(pricing);
+	}
+	
+	@Override
+	public void removePricing(long oid) {
+		if (priceRepo.existsByOid(oid)) {
+			priceRepo.deleteByOid(oid);
+			System.out.println("Pricing Delete ----> "+priceRepo.findByOid(oid));
+		}			
 	}
 
 }

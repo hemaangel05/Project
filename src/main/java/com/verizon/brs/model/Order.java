@@ -2,16 +2,13 @@ package com.verizon.brs.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -48,7 +45,7 @@ public class Order {
 	
 	
 	public Order(long oid, LocalDate dor, LocalDate dod, double weight, int qty, Type deliverytype, Area deliveryarea,
-			String locality, String city, String state, String country) {
+			String locality, String city, String state, String country, double price) {
 		super();
 		this.oid = oid;
 		this.dor = dor;
