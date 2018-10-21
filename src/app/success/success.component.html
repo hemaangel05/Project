@@ -1,0 +1,13 @@
+<div id="successmsg" class="card" *ngIf="opt=='a'">
+  <h3>
+    Thank you for your interest. Your order : OC#{{order.oid}} for the price {{order.price}}. Are you sure you want to place this order..?
+  </h3>
+  <button (click)=cancelOrder(false)>Continue</button>
+  <button (click)="cancelOrder(true)">Cancel</button>
+</div>
+<div id="successmsg" class="card" *ngIf="opt=='d'">
+  <h3>
+    Thank you for your interest. Lets take you back.
+  </h3>
+  <button (click)="continueOrder()">Ok</button>
+</div>
