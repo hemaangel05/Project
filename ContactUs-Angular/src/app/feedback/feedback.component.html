@@ -1,0 +1,54 @@
+<h3>
+    {{isEdit?"Edit":"Your Feedback matters to us, please fill up the form below:"}} 
+  </h3>
+
+  <div class="tab">
+      <img class = "icons" [src]="fform"  width="70px"/>
+
+  <table >
+      <tr>
+         
+
+          <label>Message:</label>
+          
+                <input  [(ngModel)]="blueray.message" 
+                #message ="ngModel" required minlength="5" width="100%"/>
+                <ol [hidden]=message.valid>
+                  <li [hidden]="message.hasError('required')">please type message </li>
+                  <li [hidden] ="message.hasError('minlength')"> can not be less than 5 chars in length</li>
+
+      
+                </ol>
+            
+        </tr>
+ <tr>    <label>Name:</label>
+      <input type="text" [(ngModel)]="blueray.name" 
+      #name=ngModel required minlength="5" maxlength="40"
+      />
+      <ul [hidden]=name.valid> 
+  
+        <li [hidden] ="name.hasError('required')"> can not be empty</li>
+        <li [hidden] ="name.hasError('minlength')"> can not be less than 5 chars in length</li>
+        <li [hidden] ="name.hasError('maxlength')"> can not be more than 40 chars in length</li>
+      </ul>
+    
+    
+  </tr>
+  
+  <tr>
+<label>Email:</label>
+
+<input type="email" name="em" [(ngModel)]="blueray.email"/>
+    
+  </tr>
+
+  
+    
+  <tr>
+
+
+     <button (click)="save()" style="margin-left: 180px; margin-top: 50px;background-color: black; color:white; font-size: 20px" > save</button>
+  </tr>
+  
+  </table>
+</div>

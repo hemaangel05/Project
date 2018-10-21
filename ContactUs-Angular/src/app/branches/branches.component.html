@@ -1,0 +1,19 @@
+
+
+  <h2>Branches in India</h2>
+<table  border="1" cellpadding="10" >
+  <thead>
+    <tr>
+      <th>Branch</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let b of branches">
+      <td>{{b.branch}}</td>
+        <td>{{b.location}}</td>
+         
+    </tr>
+  </tbody>
+</table>

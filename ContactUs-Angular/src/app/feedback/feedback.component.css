@@ -1,0 +1,50 @@
+
+table{
+    width: 100%;
+    margin-left: 50px;
+}
+th{
+    font-size: 20px;
+    margin-left: -80px;
+}
+.feed{
+display: inline; 
+   clear: both;
+}
+
+input{
+    width: 100%;
+    font-size: 15px;
+    padding: 15px;
+    margin-left: -50px;
+}
+label{
+    width: 100%;
+    font-size: 40px;
+    margin-left: -50px;
+
+}
+ button{
+    padding: 10px;
+    width: 70%;
+        margin-left: 80%;
+
+}
+.tab{
+    border: solid 1px black;
+    padding: 50px;
+    background-color:#D2DBE1;
+margin: 20px;
+}
+li{
+    font-size: 20px;
+}
+
+h3{
+    margin: 20px;
+}
+
+.icons{
+   float:right;
+
+}
