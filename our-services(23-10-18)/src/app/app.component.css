@@ -1,0 +1,99 @@
+nav{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-width:  20px;
+
+}
+li{
+    display: inline;
+    float: right;
+    padding: 15px;
+    color: white;
+ background-color: rgb(94, 91, 91);
+    
+}
+li:hover{
+    background-color: black;
+    color: white;
+}
+.sidemenu{
+    border: 2px solid black;
+    padding: 15px;
+    margin: 100px;
+    margin-left: 60px;
+    width: 25%;
+    margin-bottom: -10px;
+    background-color: #CCCCCC;
+
+
+}
+.sidemenu a{
+    text-decoration: none;
+    display: block;
+    color: white;
+    margin: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 18px;
+    background-color: rgb(94, 91, 91);
+     background-color: #CCCCCC;
+    
+}
+.myclass {
+      float: right;
+      background-color:rgb(192, 189, 189);
+      margin-top: -420px;
+      color: black;
+      width: 50%;
+      padding: 10px;
+      padding-left:25px;
+      border: 1px solid gray;
+      border-radius:10px; 
+  }
+  .myclass1 {
+    float: right;
+    margin-right:50px;
+    margin-top: -590px;
+    color: black;
+    margin-left:70px;
+    padding: 10px;
+   
+}
+.myclass1 img{
+    float: right;
+    margin-bottom:10px; 
+    margin-right: 25px;
+    margin-left:50px;
+    margin-top: 1px;
+    width:70%;
+
+}
+  p{
+      
+      font-size: 20px;
+      padding: 10px;
+  }
+  button{
+      margin:55px; 
+      width: 26%;
+      background-color: red;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      display: inline-block;
+      font-size: 20px;
+      font-weight: bold;
+      
+      
+      
+  }
+  a{
+      text-decoration: none;
+      color: black;
+  }
+
+  .imgclass {
+      margin-left: 3px;
+      display: block;
+  }
+
